@@ -48,10 +48,10 @@
 	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var TopBooks = __webpack_require__(159);
+	var BooksContainer = __webpack_require__(159);
 	
 	window.onload = function () {
-	  ReactDOM.render(React.createElement(TopBooks, null), document.getElementById('app'));
+	  ReactDOM.render(React.createElement(BooksContainer, null), document.getElementById('app'));
 	};
 
 /***/ },
@@ -19758,11 +19758,26 @@
 	var BookList = __webpack_require__(160);
 	var Book = __webpack_require__(161);
 	
-	var TopBooks = React.createClass({
-	  displayName: 'TopBooks'
+	var BooksContainer = React.createClass({
+	  displayName: 'BooksContainer',
+	
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'books-container' },
+	      React.createElement(
+	        'h2',
+	        null,
+	        'hi here are some books'
+	      ),
+	      React.createElement(BookList, null)
+	    );
+	  }
+	
 	});
 	
-	module.exports = TopBooks;
+	module.exports = BooksContainer;
 
 /***/ },
 /* 160 */
@@ -19774,7 +19789,22 @@
 	var Book = __webpack_require__(161);
 	
 	var BookList = React.createClass({
-	  displayName: 'BookList'
+	  displayName: 'BookList',
+	
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'book-list' },
+	      React.createElement(
+	        'p',
+	        null,
+	        'yo, book list'
+	      ),
+	      React.createElement(Book, null)
+	    );
+	  }
+	
 	});
 	
 	module.exports = BookList;
@@ -19787,7 +19817,18 @@
 	
 	var React = __webpack_require__(1);
 	
-	var Book = function Book(props) {};
+	var Book = function Book(props) {
+	
+	  return React.createElement(
+	    'div',
+	    { className: 'book' },
+	    React.createElement(
+	      'p',
+	      null,
+	      'Book.'
+	    )
+	  );
+	};
 	
 	module.exports = Book;
 

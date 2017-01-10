@@ -1,10 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TopBooks = require('./containers/TopBooks.jsx');
+var BooksContainer = require('./containers/BooksContainer.jsx');
 
 window.onload = function(){
   ReactDOM.render(
-    <TopBooks />,
+    <BooksContainer />,
     document.getElementById('app')
   );
 }
