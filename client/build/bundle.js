@@ -19812,6 +19812,7 @@
 	  render: function render() {
 	    var books = this.props.books.map(function (book, index) {
 	      return React.createElement(Book, {
+	        key: index,
 	        title: book["im:name"]["label"],
 	        author: book["im:artist"]["label"],
 	        price: book["im:price"]["label"],
@@ -19842,25 +19843,29 @@
 	  return React.createElement(
 	    'div',
 	    { className: 'book' },
+	    React.createElement('img', { src: props.image }),
 	    React.createElement(
-	      'p',
-	      null,
-	      'Title: ',
-	      props.title
-	    ),
-	    React.createElement(
-	      'p',
-	      null,
-	      'Author: ',
-	      props.author
-	    ),
-	    React.createElement(
-	      'p',
-	      null,
-	      'Price: ',
-	      props.price
-	    ),
-	    React.createElement('img', { src: props.image })
+	      'div',
+	      { id: 'book-details' },
+	      React.createElement(
+	        'p',
+	        null,
+	        'Title: ',
+	        props.title
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Author: ',
+	        props.author
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Price: ',
+	        props.price
+	      )
+	    )
 	  );
 	};
 	
