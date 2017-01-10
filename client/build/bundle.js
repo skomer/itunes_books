@@ -19762,16 +19762,33 @@
 	  displayName: 'BooksContainer',
 	
 	
+	  getInitialState: function getInitialState() {
+	    return { books: [] };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var url = 'https://itunes.apple.com/gb/rss/toppaidebooks/limit=20/genre=9019/json';
+	    var request = new XMLHttpRequest();
+	    request.open('GET', url);
+	    request.onload = function () {
+	      var data = JSON.parse(request.responseText)['feed']['entry'];
+	      console.log("data", data);
+	      this.setState({ books: data });
+	    }.bind(this);
+	    request.send();
+	  },
 	  render: function render() {
+	    console.log("this.state.books", this.state.books);
 	    return React.createElement(
 	      'div',
 	      { className: 'books-container' },
 	      React.createElement(
-	        'h2',
+	        'h1',
 	        null,
-	        'hi here are some books'
+	        'iTunes Top 20 Paid Books UK Science and Nature'
 	      ),
-	      React.createElement(BookList, null)
+	      React.createElement(BookList, {
+	        books: this.state.books
+	      })
 	    );
 	  }
 	
@@ -19793,15 +19810,18 @@
 	
 	
 	  render: function render() {
+	    var books = this.props.books.map(function (book, index) {
+	      return React.createElement(Book, {
+	        title: book["im:name"]["label"],
+	        author: book["im:artist"]["label"],
+	        price: book["im:price"]["label"],
+	        image: book["im:image"][2]["label"]
+	      });
+	    });
 	    return React.createElement(
 	      'div',
 	      { className: 'book-list' },
-	      React.createElement(
-	        'p',
-	        null,
-	        'yo, book list'
-	      ),
-	      React.createElement(Book, null)
+	      books
 	    );
 	  }
 	
@@ -19825,8 +19845,22 @@
 	    React.createElement(
 	      'p',
 	      null,
-	      'Book.'
-	    )
+	      'Title: ',
+	      props.title
+	    ),
+	    React.createElement(
+	      'p',
+	      null,
+	      'Author: ',
+	      props.author
+	    ),
+	    React.createElement(
+	      'p',
+	      null,
+	      'Price: ',
+	      props.price
+	    ),
+	    React.createElement('img', { src: props.image })
 	  );
 	};
 	

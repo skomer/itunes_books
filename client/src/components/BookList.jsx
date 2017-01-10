@@ -3,13 +3,20 @@ var Book = require('./Book.jsx');
 
 var BookList = React.createClass({
 
-
-
   render: function() {
+    var books = this.props.books.map(function(book, index){
+      return (
+        <Book 
+          title={book["im:name"]["label"]}
+          author={book["im:artist"]["label"]}
+          price={book["im:price"]["label"]}
+          image={book["im:image"][2]["label"]}
+      />
+      );
+    });
     return (
       <div className='book-list'>
-        <p>yo, book list</p>
-        <Book />
+        {books}
       </div>
     );
   }
